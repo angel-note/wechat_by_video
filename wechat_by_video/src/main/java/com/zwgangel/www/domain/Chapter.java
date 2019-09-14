@@ -8,21 +8,17 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * 用户表
+ * 章节实体类：章节表
  */
 @Setter
 @Getter
 @ToString
-public class User implements Serializable {
+public class Chapter implements Serializable {
 
   private Integer id;
-  private String openid;
-  private String name;
-  private String headImg;
-  private String phone;
-  private String sign;
-  private Integer sex;
-  private String city;
+  private Integer videoId;
+  private String title;
+  private Integer ordered;
   private java.util.Date createTime;
 
 }

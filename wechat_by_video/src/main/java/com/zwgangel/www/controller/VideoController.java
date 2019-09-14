@@ -1,5 +1,6 @@
 package com.zwgangel.www.controller;
 
+import com.zwgangel.www.domain.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

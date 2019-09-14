@@ -8,21 +8,22 @@ import lombok.ToString;
 import java.io.Serializable;
 
 /**
- * 用户表
+ * 评论实体类：评论表
  */
 @Setter
 @Getter
 @ToString
-public class User implements Serializable {
+public class Comment implements Serializable {
 
   private Integer id;
-  private String openid;
-  private String name;
+  private String content;
+  private Integer userId;
   private String headImg;
-  private String phone;
-  private String sign;
-  private Integer sex;
-  private String city;
+  private String name;
+  private double point;
+  private Integer up;
   private java.util.Date createTime;
+  private Integer orderId;
+  private Integer videoId;
 
 }
