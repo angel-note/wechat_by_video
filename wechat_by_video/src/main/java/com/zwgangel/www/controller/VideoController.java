@@ -16,9 +16,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/wechat_by_video")
 public class VideoController {
 
-    @RequestMapping("test")
-    public String test(){
-        return "hello wrold";
-    }
-
 }
