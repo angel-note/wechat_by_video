@@ -17,7 +17,7 @@ public class VideoController {
 
     @RequestMapping("test")
     public String test(){
-        return "hello world";
+        return "hello wrold";
     }
 
 }
