@@ -43,7 +43,7 @@ public class TestController {
         System.out.println("公众号appid : " + wechat_appid);
         System.out.println("公众号密钥 : " + wechat_appsecret);
 
-        return "公众号appid : " + wechat_appid +"\n公众号密钥 : " + wechat_appsecret;
+        return "公众号appid : " + wechat_appid +"公众号密钥 : " + wechat_appsecret;
     }
 
 
