@@ -50,7 +50,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- 默认就会初始化的依赖 包-->
+        <!-- 默认就会初始化的依赖包-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
