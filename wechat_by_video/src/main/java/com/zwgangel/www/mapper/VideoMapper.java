@@ -44,7 +44,7 @@ public interface VideoMapper {
      * @return
      */
     @Update("update video set title = #{title},summary = #{summary},view_num =#{viewNum}," +
-            "create_time=#{createTime}where id = #{id}")
+            "create_time=#{createTime} where id = #{id}")
     int updateVideoById(Video video);
 
 
