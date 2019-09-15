@@ -1,11 +1,15 @@
 package com.zwgangel.www.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zwgangel.www.domain.Video;
 import com.zwgangel.www.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Title: VideoController
@@ -31,10 +35,17 @@ public class VideoController {
      */
     @GetMapping("page")
     public Object pageVideo(@RequestParam(value = "page",defaultValue = "1")int page,
-                            @RequestParam(value = "size",defaultValue = "10")int size){
+                            @RequestParam(value = "size",defaultValue = "2")int size){
+        PageHelper.startPage(page,size);        // 添加这行语句就可实现分页功能
         List<Video> videoList = videoService.findAll();
         System.out.println(videoList);
-        return videoList;
+        PageInfo<Video> pageInfo = new PageInfo<>(videoList);       // 获取这个分页查询的所有信息
+        Map<String,Object> dataMap = new HashMap<>();
+        dataMap.put("total_size",pageInfo.getTotal());      // 总条数
+        dataMap.put("total_page",pageInfo.getPages());      // 总页数
+        dataMap.put("current_page",page);                   // 当前页
+        dataMap.put("data",pageInfo.getList());            // 当前分页数据
+        return dataMap;
     }
 
     /**
