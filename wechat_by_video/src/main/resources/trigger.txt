@@ -1,2 +1,2 @@
 # 手动触发热部署
-version = 2
+version = 5
