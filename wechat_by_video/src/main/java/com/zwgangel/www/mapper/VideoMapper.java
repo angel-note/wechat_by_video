@@ -1,6 +1,7 @@
 package com.zwgangel.www.mapper;
 
 import com.zwgangel.www.domain.Video;
+import com.zwgangel.www.provider.VideoProvider;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -43,8 +44,10 @@ public interface VideoMapper {
      * @param video
      * @return
      */
-    @Update("update video set title = #{title},summary = #{summary},view_num =#{viewNum}," +
-            "create_time=#{createTime} where id = #{id}")
+//    @Update("update video set title = #{title},summary = #{summary},view_num =#{viewNum}," +
+//            "create_time=#{createTime} where id = #{id}")
+    // 使用@UpdateProvider 来替换上面的SQL语句。这种方式叫做动态SQL
+    @UpdateProvider(type = VideoProvider.class, method = "updateVideoById")
     int updateVideoById(Video video);
 
 

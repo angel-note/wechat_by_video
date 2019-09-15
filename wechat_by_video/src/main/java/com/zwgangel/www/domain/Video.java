@@ -15,13 +15,13 @@ import java.io.Serializable;
 public class Video implements Serializable {
 
   private Integer id;
-  private String title;
-  private String summary;
-  private String coverImg;
-  private Integer viewNum;
-  private Integer price;
-  private java.util.Date createTime;
-  private Integer online;
-  private double point;
+  private String title; // 视频标题
+  private String summary;  // 概述
+  private String coverImg;  // 封面图
+  private Integer viewNum;  // 观看数
+  private Integer price;  // 价格，分
+  private java.util.Date createTime;  // 创建时间
+  private Integer online; // 上线状态
+  private Double point; // 评分
 
 }
