@@ -2,6 +2,7 @@ package com.zwgangel.www.controller;
 
 import com.zwgangel.www.config.WeChatConfig;
 import com.zwgangel.www.domain.JsonData;
+import com.zwgangel.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ public class WechatController {
 
     @Autowired
     private WeChatConfig weChatConfig;
+    @Autowired
+    private UserService  userService;
 
     /**
      * 功能描述 ： 拼装微信扫一扫登录的rul
@@ -55,7 +58,7 @@ public class WechatController {
     public  void wechatUserCallback(@RequestParam(value = "code",required = true) String code, String  state, HttpServletResponse response){
         System.out.println("返回的 code  : "+ code);
         System.out.println("返回的 state "  + state);
-
+        userService.saveWeChatUser(code);
 
 
     }

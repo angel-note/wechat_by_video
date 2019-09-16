@@ -53,7 +53,7 @@ public class WeChatConfig {
     private String openRedirectUrl;
 
     /**
-     * 微信开放平台二维码连接 , 扫描二维码后会返回一个请求CODE
+     * 第一步：微信开放平台二维码连接 , 扫描二维码后会返回一个请求CODE
      * appid	是	应用唯一标识
      * redirect_uri	是	请使用urlEncode对链接进行处理
      * response_type	是	填code
@@ -62,7 +62,32 @@ public class WeChatConfig {
      */
     private final static String OPEN_QRCODE_URL= "https://open.weixin.qq.com/connect/qrconnect?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_login&state=%s#wechat_redirect";
 
+
+    /**
+     * 第二步：微信开放平台获access_token地址
+     * 通过传入appid、secret、code  来获取access_token.
+     * 然后通过 access_token 获取微信的基本信息
+     * // https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code
+     */
+    private final static String OPEN_ACCESS_TOKEN_URL  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
+
+    //
+    /**
+     * 第三步：根据 access_token获取用户信息
+     * // https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
+     */
+    private final static String OPEN_USER_INFO_URL  = "https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s";
+
+
     public static String getOpenQrcodeUrl() {
         return OPEN_QRCODE_URL;
+    }
+
+    public static String getOpenAccessTokenUrl() {
+        return OPEN_ACCESS_TOKEN_URL;
+    }
+
+    public static String getOpenUserInfoUrl() {
+        return OPEN_USER_INFO_URL;
     }
 }
