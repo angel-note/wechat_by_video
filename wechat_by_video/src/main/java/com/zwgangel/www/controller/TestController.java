@@ -1,9 +1,9 @@
 package com.zwgangel.www.controller;
 
 import com.zwgangel.www.config.WeChatConfig;
+import com.zwgangel.www.domain.JsonData;
 import com.zwgangel.www.domain.Video;
 import com.zwgangel.www.service.VideoService;
-import com.zwgangel.www.service.impl.VideoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +19,7 @@ import java.util.List;
  * @create 2019-09-14 15:08
  */
 @RestController
-@RequestMapping("/wechat_by_video")
+@RequestMapping("/test")
 public class TestController {
 
     @RequestMapping("test")
@@ -36,14 +36,14 @@ public class TestController {
     @Autowired
     private WeChatConfig weChatConfig;
     @RequestMapping("test_wechat_config")
-    public String testWeChatConfig(){
+    public JsonData testWeChatConfig(){
 
         String wechat_appid = weChatConfig.getAppid();
         String wechat_appsecret = weChatConfig.getAppsecret();
         System.out.println("公众号appid : " + wechat_appid);
         System.out.println("公众号密钥 : " + wechat_appsecret);
 
-        return "公众号appid : " + wechat_appid +"公众号密钥 : " + wechat_appsecret;
+        return JsonData.buildSuccess(wechat_appid);
     }
 
 
@@ -59,5 +59,4 @@ public class TestController {
         System.out.println(videoList);
         return videoList;
     }
-
 }
