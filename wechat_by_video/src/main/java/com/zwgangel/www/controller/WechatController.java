@@ -4,6 +4,7 @@ import com.zwgangel.www.config.WeChatConfig;
 import com.zwgangel.www.domain.JsonData;
 import com.zwgangel.www.domain.User;
 import com.zwgangel.www.service.UserService;
+import com.zwgangel.www.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -52,21 +54,24 @@ public class WechatController {
 
 
     /**
-     * 功能描述 ： 通过用户扫码确认后，微信平台会返回一个code，并回调这个方法的逻辑
+     * 功能描述 ：微信扫码登录，回调地址
+     *      通过用户扫码确认后，微信平台会返回一个code，并回调这个方法的逻辑
      *      需要通过 code 来向微信公众平台获取 access_token
      * @param code      微信平台返回的 code
      * @param state     请求时带过去的页面请求路径
      * @param response  页面需要重定向
      */
     @GetMapping("/user/callback")
-    public  void wechatUserCallback(@RequestParam(value = "code",required = true) String code, String  state, HttpServletResponse response){
+    public  void wechatUserCallback(@RequestParam(value = "code",required = true) String code, String  state, HttpServletResponse response) throws IOException {
         System.out.println("返回的 code  : "+ code);
         System.out.println("返回的 state "  + state);
         User user = userService.saveWeChatUser(code);
         if (user !=null){
             // 生成jwt 和 User对象一并返回给前端
+            String token = JwtUtils.generateJsonWebToken(user);
+            // 重定向页面：state 是重定向到项目内的页面，如果需要站外跳转，则需要在前面加http:// ，如 http://www.baidu.com
+            response.sendRedirect(state +"?token = " + token + "&head_img = "+user.getHeadImg()+"&name = "+URLEncoder.encode(user.getName(),"UTF-8"));
         }
-        // 重定向
 
 
     }
