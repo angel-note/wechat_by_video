@@ -71,12 +71,11 @@ public class WeChatConfig {
      */
     private final static String OPEN_ACCESS_TOKEN_URL  = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=%s&secret=%s&code=%s&grant_type=authorization_code";
 
-    //
     /**
      * 第三步：根据 access_token获取用户信息
      * // https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID
      */
-    private final static String OPEN_USER_INFO_URL  = "https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s";
+    private final static String OPEN_USER_INFO_URL  = "https://api.weixin.qq.com/sns/userinfo?access_token=%s&openid=%s&lang=zh_CN";
 
 
     public static String getOpenQrcodeUrl() {

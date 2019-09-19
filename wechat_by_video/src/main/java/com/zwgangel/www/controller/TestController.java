@@ -35,7 +35,7 @@ public class TestController {
      */
     @Autowired
     private WeChatConfig weChatConfig;
-    @RequestMapping("test_wechat_config")
+    @RequestMapping("1")
     public JsonData testWeChatConfig(){
 
         String wechat_appid = weChatConfig.getAppid();

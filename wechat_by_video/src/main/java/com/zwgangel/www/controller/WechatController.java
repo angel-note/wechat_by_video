@@ -2,10 +2,14 @@ package com.zwgangel.www.controller;
 
 import com.zwgangel.www.config.WeChatConfig;
 import com.zwgangel.www.domain.JsonData;
+import com.zwgangel.www.domain.User;
 import com.zwgangel.www.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
@@ -58,7 +62,11 @@ public class WechatController {
     public  void wechatUserCallback(@RequestParam(value = "code",required = true) String code, String  state, HttpServletResponse response){
         System.out.println("返回的 code  : "+ code);
         System.out.println("返回的 state "  + state);
-        userService.saveWeChatUser(code);
+        User user = userService.saveWeChatUser(code);
+        if (user !=null){
+            // 生成jwt 和 User对象一并返回给前端
+        }
+        // 重定向
 
 
     }
