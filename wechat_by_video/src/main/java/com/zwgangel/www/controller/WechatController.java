@@ -70,7 +70,7 @@ public class WechatController {
             // 生成jwt 和 User对象一并返回给前端
             String token = JwtUtils.generateJsonWebToken(user);
             // 重定向页面：state 是重定向到项目内的页面，如果需要站外跳转，则需要在前面加http:// ，如 http://www.baidu.com
-            response.sendRedirect(state +"?token = " + token + "&head_img = "+user.getHeadImg()+"&name = "+URLEncoder.encode(user.getName(),"UTF-8"));
+            response.sendRedirect(state +"?token=" + token + "&head_img="+user.getHeadImg()+"&name="+URLEncoder.encode(user.getName(),"UTF-8"));
         }
 
 
